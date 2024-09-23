@@ -1,7 +1,7 @@
 import React from 'react'
 
 const DataBoard = () => {
-  const levelCompletionPercentage = 50
+  const levelCompletionPercentage = 75
   const totalVotes = 21730
   const totalGoals = 25000
   return (

@@ -15,15 +15,13 @@ const ProgressBar: React.FC = () => {
     if(progress != 100) {
       const increaseProgress = setInterval(() => {
         setProgress((prev: number) => prev + 1)
-      }, 30)
-
-      // End increase Progress
+      }, 15)
+      
       setTimeout(() => {
+        // End increase Progress
         clearInterval(increaseProgress)
-      }, 1500)
 
-      // Redirect to offline page
-      setTimeout(() => {
+        // Redirect to offline page
         clearInterval(increaseProgress)
         router.push('/home')
       }, 2300)

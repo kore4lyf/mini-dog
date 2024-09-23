@@ -3,12 +3,11 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Providers from "./providers";
 
-
-
 const poppins = localFont({
   src: "./fonts/poppins-var.otf",
   variable: "--font-poppins",
   weight: "100 900",
+  // font
 });
 
 export const metadata: Metadata = {
