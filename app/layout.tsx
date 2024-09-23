@@ -21,12 +21,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${poppins.variable} antialiased`}
+        className={`${poppins.variable} antialiased h-screen`}
       >
-        <div className="bgGradient"></div>
-        <main>
-          {children}
-        </main>
+        {children}
       </body>
     </html>
   );

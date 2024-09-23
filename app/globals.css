@@ -33,13 +33,26 @@ progress {
   }
   
   &::-webkit-progress-value {
-    @apply rounded-full bg-gradient-to-r from-white to-[#0C33FE];
+    @apply w-[10%] rounded-full;
+    background: linear-gradient(to right, white 60%, #0C33FE );
   }
 }
 
 .socialIcon {
   @apply bg-[#161616] border border-[#2C2C2E] rounded-full grid place-content-center;
+
+  &:hover {
+    @apply bg-[#292929];
+  }
 }
+
+.primaryBtn {
+  @apply bg-[#0A84FF];
+}
+  
+/* Animation Keyframes */
+
+
 
 
 
