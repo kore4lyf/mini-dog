@@ -3,25 +3,43 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --gradientBg: radial-gradient(#002446 -20%, black 70%);
+  --background: #000000;
+  --foreground: #FFFFFF;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+/* Global */
 
 body {
   color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--gradientBg);
+  font-family: var(--font-poppins), sans-serif;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+/* Typography */
+
+.textDim {
+ @apply text-[#8E8E93]
+}
+
+
+/* Components */ 
+
+progress {
+  @apply rounded-full overflow-hidden;
+  
+  &::-webkit-progress-bar {
+    @apply rounded-full bg-white bg-opacity-20;
+  }
+  
+  &::-webkit-progress-value {
+    @apply rounded-full bg-gradient-to-r from-white to-[#0C33FE];
   }
 }
+
+.socialIcon {
+  @apply bg-[#161616] border border-[#2C2C2E] rounded-full grid place-content-center;
+}
+
+
+
