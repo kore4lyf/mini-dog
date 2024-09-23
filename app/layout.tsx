@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
-import providers from "./providers";
 import localFont from "next/font/local";
 import "./globals.css";
+import Providers from "./providers";
+
+
 
 const poppins = localFont({
   src: "./fonts/poppins-var.otf",
@@ -24,9 +26,9 @@ export default function RootLayout({
       <body
         className={`${poppins.variable} antialiased h-screen`}
       >
-        <providers>
+        <Providers>
           {children}
-        </providers>
+        </Providers>
       </body>
     </html>
   );

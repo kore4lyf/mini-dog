@@ -6,9 +6,9 @@ interface SocialIconProps {
 
 const SocialIcon: React.FC<SocialIconProps> = ({ children }) => {
   return (
-    <div className='socialIcon w-[47px] h-[47px]'>
+    <button className='socialIcon w-[47px] h-[47px]'>
       {children}
-    </div>
+    </button>
   )
 }
 

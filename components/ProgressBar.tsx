@@ -39,7 +39,7 @@ const ProgressBar: React.FC = () => {
   }, [])
 
   return (
-    <progress ref={progressBar} className='w-[137px] h-[5px]' value={progress} max="80">Loading...</progress>
+    <progress ref={progressBar} className='loading w-[137px] h-[5px]' value={progress} max="100">Loading...</progress>
   )
 }
 

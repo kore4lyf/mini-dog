@@ -1,7 +1,8 @@
 import Image from 'next/image'
 import React from 'react'
-import tinyMiniDog from '@/assets/images/tiny-mini-dog.png'
-import arrowRight from '@/assets/images/arrow-right.png'
+import tinyMiniDog from '@/assets/images/tiny-mini-dog.svg'
+import arrowRight from '@/assets/images/arrow-right.svg'
+import star from '@/assets/images/star.svg'
 
 const UserLevelInfo: React.FC = () => {
 
@@ -10,17 +11,21 @@ const UserLevelInfo: React.FC = () => {
   const nextLevelName = 'President'
 
   return (
-    <div>
-      <div>
-        <Image src={tinyMiniDog} alt='Level profile picture' className='w-[34.4px]'/>
-        <p>{currentLevelName}</p>
-      </div>
-      
-      <Image src={arrowRight} alt='Three angles pointing to the right' className='w-[35.2px]' />
+    <section className='flex gap-3 justify-between items-center'>
+      <div className='flex gap-4 justify-between w-full items-center bg-gradient-to-r from-[#0D4382] to-[#030E1C] to-50% border border-[#999999] rounded-full pr-4'>
+        <div className='flex gap-4 items-center'>
+          <Image src={levelImage} alt='Level profile picture' className='w-9 scale-[1.6]'/>
+          <p>{currentLevelName}</p>
+        </div>
+        
+        <Image src={arrowRight} alt='Three angles pointing to the right' className='w-[35.2px]' />
 
-      <p className='textDim'>{nextLevelName}</p>
+        <p className='textDim'>{nextLevelName} </p>
+      </div>
+
+      <Image src={star} alt="" className='w-[40px]'/>
       
-    </div>
+    </section>
   )
 }
 
