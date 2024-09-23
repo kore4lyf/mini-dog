@@ -25,7 +25,7 @@ const ProgressBar: React.FC = () => {
       // Redirect to offline page
       setTimeout(() => {
         clearInterval(increaseProgress)
-        router.push('/offline')
+        router.push('/home')
       }, 2300)
     }
   }

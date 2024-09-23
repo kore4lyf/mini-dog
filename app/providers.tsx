@@ -1,6 +1,8 @@
 "use client"
 
 import React, { ReactNode, useEffect, useState } from 'react'
+import offlinePage from './offline/page'
+import ErrorPage from '@/components/ErrorPage'
 
 interface providerProps {
   children: ReactNode
@@ -56,15 +58,13 @@ const providers: React.FC<providerProps> = ({children}) => {
   return (
     <div>
       {isOnline ? (
-        <div>
-          <h1>Your App</h1>
-          <button onClick={() => performTask('Fetch data')}>Perform Task</button>
-        </div>
+        <>
+          {children}
+        </>
       ) : (
-        <div>
-          <h1>No Internet Connection</h1>
-          <p>Please check your connection and try again.</p>
-        </div>
+        <>
+          <ErrorPage/>
+        </>
       )}
     </div>
   )
