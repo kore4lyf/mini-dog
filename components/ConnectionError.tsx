@@ -2,19 +2,15 @@
 
 import React from 'react'
 import Image from 'next/image'
-import miniDog from '@/assets/images/mini-dog.png'
-import refresh from "@/assets/icons/refresh.png"
+import miniDog from '@/assets/images/mini-dog.svg'
+import refresh from "@/assets/icons/refresh.svg"
 import { useRouter } from 'next/navigation'
 
-const ErrorPage = () => {
+const ConnectionError = () => {
   const router = useRouter()
 
   return (
     <main className='grid auto-rows-auto h-screen'>
-      <div></div>
-      <div></div>
-      <div></div>
-
       <div className='row-span-2 grid place-content-center translate-y-7'>
         <Image src={miniDog} alt='Dogs Image' className='w-[320px]'/>
       </div>
@@ -33,4 +29,4 @@ const ErrorPage = () => {
   )
 }
 
-export default ErrorPage
+export default ConnectionError

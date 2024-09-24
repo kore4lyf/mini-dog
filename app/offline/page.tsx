@@ -1,10 +1,10 @@
 import React from 'react'
-import ErrorPage from '@/components/ErrorPage';
+import ConnectionError from '@/components/ConnectionError'
 
 const offlinePage: React.FC = () => {
   return (
     <>
-      <ErrorPage/>
+      <ConnectionError/>
     </>
   )
 }

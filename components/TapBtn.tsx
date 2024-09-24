@@ -2,7 +2,7 @@
 
 import React from 'react'
 import Image from 'next/image'
-import miniDog from '@/assets/images/mini-dog.png';
+import miniDog from '@/assets/images/mini-dog.svg';
 
 const TapBtn: React.FC = () => {
   return (

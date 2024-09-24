@@ -2,9 +2,9 @@ import React from 'react'
 import Image from 'next/image'
 import launchDog from '@/assets/images/loading-dog.png'
 import ProgressBar from '@/components/ProgressBar'
-import SocialIcon from '@/components/SocialIcon';
 import telegramIcon from '@/assets/icons/telegram.png'
 import xIcon from '@/assets/icons/x.png'
+import CircleButton from '@/components/CircleButton';
 
 
 const LaunchPage: React.FC = () => {
@@ -25,12 +25,12 @@ const LaunchPage: React.FC = () => {
           <p>More info official channels</p>
         </div>
         <div className='flex gap-4'>
-          <SocialIcon>
-            <Image src={telegramIcon} alt='Telegram Icon' /> 
-          </SocialIcon>
-          <SocialIcon>
-            <Image src={xIcon} alt='X Icon' width='21'/> 
-          </SocialIcon>
+          <CircleButton path='https://t.me/'>
+            <Image className='p-1' src={telegramIcon} alt='Telegram Icon' /> 
+          </CircleButton>
+          <CircleButton path='https://x.com'>
+            <Image className='p-1' src={xIcon} alt='X Icon' width='21'/> 
+          </CircleButton>
         </div>
       </div>
       

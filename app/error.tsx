@@ -1,6 +1,6 @@
 "use client"
 
-import ErrorPage from '@/components/ErrorPage'
+import ErrorPage from '@/components/ConnectionError'
 import React, { useEffect, useState } from 'react'
 
 

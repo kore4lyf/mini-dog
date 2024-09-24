@@ -1,7 +1,7 @@
 "use client"
 
 import React, { ReactNode, useEffect, useState } from 'react'
-import ErrorPage from '@/components/ErrorPage'
+import ConnectionError from '@/components/ConnectionError'
 
 interface providerProps {
   children: ReactNode
@@ -42,7 +42,7 @@ const Providers: React.FC<providerProps> = ({children}) => {
         </>
       ) : (
         <>
-          <ErrorPage/>
+          <ConnectionError/>
         </>
       )}
     </div>
