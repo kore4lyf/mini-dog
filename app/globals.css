@@ -61,7 +61,17 @@ progress.loading {
   @apply bg-[#0A84FF];
 }
 
-
+.navMenu {
+  & .navMenuItem:hover {
+    p {
+      color: white;
+    }
+    
+    & .navIcon path {
+      fill: white;
+    }
+  }
+}
 
   
 /* Animation Keyframes */

@@ -15,25 +15,25 @@ const homePage = () => {
   const levelMaxEnergy = 1500
 
   return (
-    <main className='w-[90%] py-4 mx-auto h-screen grid auto-rows-auto gap-4'>
+    <main className='relative w-[90%] py-4 mx-auto h-screen grid auto-rows-auto gap-4'>
       <UserLevelInfo />
       <DataBoard />
       <div className='row-span-12 flex flex-col justify-between'>
 
-      <div className='mx-auto'>
-        <Points points={points} />
-      </div>
-      
-      <div className='-translate-y-8 mx-auto'>
-        <TapBtn />
-      </div>
-      
-      <div className='flex justify-between h-fit'>
-        <TapEnergy activeEnergy={activeEnergy} levelMaxEnergy={levelMaxEnergy}/>
-        <CircleButton path="/settings">
-          <Image src={settingsIcon} alt="Settings icon" width="23" />
-        </CircleButton>
-      </div>
+        <div className='mx-auto'>
+          <Points points={points} />
+        </div>
+        
+        <div className='-translate-y-8 mx-auto'>
+          <TapBtn />
+        </div>
+        
+        <div className='flex justify-between h-fit'>
+          <TapEnergy activeEnergy={activeEnergy} levelMaxEnergy={levelMaxEnergy}/>
+          <CircleButton path="/settings">
+            <Image src={settingsIcon} alt="Settings icon" width="23" />
+          </CircleButton>
+        </div>
       </div>
       <NavMenu />
       <div className='h-20'></div>

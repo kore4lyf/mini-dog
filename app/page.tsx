@@ -1,11 +1,10 @@
 import React from 'react'
 import Image from 'next/image'
-import launchDog from '@/assets/images/loading-dog.png'
+import launchDog from '@/assets/images/launch-dog.svg'
 import ProgressBar from '@/components/ProgressBar'
 import telegramIcon from '@/assets/icons/telegram.png'
 import xIcon from '@/assets/icons/x.png'
-import CircleButton from '@/components/CircleButton';
-import NavMenu from '@/components/NavMenu'
+import CircleButton from '@/components/CircleButton'
 
 
 const LaunchPage: React.FC = () => {
@@ -34,9 +33,6 @@ const LaunchPage: React.FC = () => {
           </CircleButton>
         </div>
       </div>
-
-      <NavMenu/>
-      
     </div>
   )
 }

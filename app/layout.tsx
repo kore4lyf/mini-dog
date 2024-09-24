@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import localFont from 'next/font/local';
 import './globals.css';
 import Providers from '@/components/Providers';
@@ -12,13 +12,16 @@ const poppins = localFont({
 
 export const metadata: Metadata = {
   title: 'Mini Dog',
-  description: 'Mini Dog is a tap to earn gam',
-  viewport: {
-    width: 'device-width',
-    initialScale: 1.0,
-    userScalable: false,
-  },
+  description: 'Mini Dog is a tap to earn game'
 };
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  minimumScale: 1,
+  userScalable: false
+}
 
 export default function RootLayout({
   children,
