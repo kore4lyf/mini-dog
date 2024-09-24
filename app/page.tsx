@@ -5,6 +5,7 @@ import ProgressBar from '@/components/ProgressBar'
 import telegramIcon from '@/assets/icons/telegram.png'
 import xIcon from '@/assets/icons/x.png'
 import CircleButton from '@/components/CircleButton';
+import NavMenu from '@/components/NavMenu'
 
 
 const LaunchPage: React.FC = () => {
@@ -33,6 +34,8 @@ const LaunchPage: React.FC = () => {
           </CircleButton>
         </div>
       </div>
+
+      <NavMenu/>
       
     </div>
   )

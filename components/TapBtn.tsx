@@ -7,7 +7,7 @@ import miniDog from '@/assets/images/mini-dog.svg';
 const TapBtn: React.FC = () => {
   return (
     <button className='row-span-2 grid place-content-center translate-y-7'>
-        <Image src={miniDog} alt='Dogs Image' className='w-[320px]'/>
+        <Image className='scale-125 w-[256px]' src={miniDog} alt='Dogs Image'/>
 
     </button>
   )

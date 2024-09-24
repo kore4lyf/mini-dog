@@ -11,7 +11,7 @@ const UserLevelInfo: React.FC = () => {
   const nextLevelName = 'President'
 
   return (
-    <section className='flex gap-3 justify-between items-center'>
+    <section className='flex gap-3 justify-between items-center block'>
       <div className='flex gap-4 justify-between w-full items-center bg-gradient-to-r from-[#0a84ff69] to-transparent border border-[#999999] rounded-full pr-4'>
         <div className='flex gap-4 items-center'>
           <Image src={levelImage} alt='Level profile picture' className='w-9 scale-[1.6]'/>
