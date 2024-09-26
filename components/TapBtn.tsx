@@ -1,16 +1,17 @@
 'use client'
 
-import React, { MouseEventHandler } from 'react'
+import React, { MouseEventHandler, TouchEventHandler } from 'react'
 import Image from 'next/image'
 import miniDog from '@/assets/images/mini-dog.svg';
 
 interface TapBtnProps {
-  action: MouseEventHandler<HTMLButtonElement>
+  action: TouchEventHandler<HTMLButtonElement>,
+  pressStyle: string
 }
 
-const TapBtn: React.FC<TapBtnProps> = ({ action }) => {
+const TapBtn: React.FC<TapBtnProps> = ({ action, pressStyle  }) => {
   return (
-    <button onClick={action} className='row-span-2 grid place-content-center translate-y-7'>
+    <button onTouchEnd={action} style={ { transform: pressStyle}} className='tapButton row-span-2 grid place-content-center pt-10'>
       <Image className='scale-125 w-[256px]' src={miniDog} alt='Dogs Image'/>
     </button>
   )

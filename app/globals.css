@@ -73,6 +73,16 @@ progress.loading {
   }
 }
 
+.tapButton {
+  transition: transform 0.1s ease;
+  transform-origin: center;
+  will-change: transform;
+  
+  &:hover {
+    cursor: pointer;
+  }
+}
+
   
 /* Animation Keyframes */
 

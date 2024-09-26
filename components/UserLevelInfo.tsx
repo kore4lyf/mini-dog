@@ -7,7 +7,7 @@ import star from '@/assets/images/star.svg'
 const UserLevelInfo: React.FC = () => {
 
   const levelImage = miniDog
-  const currentLevelName = 'Senetor'
+  const currentLevelName = 'Senator'
   const nextLevelName = 'President'
 
   return (

@@ -1,75 +1,92 @@
 "use client"
 
-import React, { useState, useEffect } from 'react'
+import React, { useReducer, useEffect, useCallback, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import Image from 'next/image'
 import DataBoard from '@/components/DataBoard'
 import TapBtn from '@/components/TapBtn'
 import UserLevelInfo from '@/components/UserLevelInfo'
 import Points from '@/components/MiniDogPoints'
 import TapEnergy from '@/components/TapEnergy'
 import CircleButton from '@/components/CircleButton'
-import settingsIcon from '@/assets/icons/settings.svg'
-import Image from 'next/image'
 import NavMenu from '@/components/NavMenu'
+import settingsIcon from '@/assets/icons/settings.svg'
+import { gameReducer, initialState, LEVEL_MAX_ENERGY } from '@/reducers/gameReducer'
 
-const homePage = () => {
-  const activeEnergy = 1392
-  const levelMaxEnergy = 1500
+const ENERGY_INCREASE_INTERVAL = 1000 // 1 second
+const POINT_INCREASE_INTERVAL = 100 // 0.1 seconds
 
-  const [count, setCount] = useState(324293)
-  const [pointsPerTap, setPointsPerTap] = useState(2)
-  const [points, setPoints] = useState<{ x: number; y: number; id: number; value: number }[]>([])
-  const [currentEnergy, setCurrentEnergy] = useState(1392)
-  const [currentTapValue, setCurrentTapValue] = useState(0)
+const HomePage: React.FC = () => {
+  const [state, dispatch] = useReducer(gameReducer, initialState)
+  const [transformStyle, setTransformStyle] = useState<string>('')
 
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    const { clientX, clientY } = e
-    setPoints((prev) => [
-      ...prev,
-      { x: clientX , y: clientY, id: Date.now(), value: pointsPerTap },
-    ])
-    setCurrentTapValue(pointsPerTap)
-  }
+  const handleTap = useCallback((x: number, y: number) => {
+    dispatch({ type: 'TAP', payload: { x, y } })
+  }, [])
 
-  
-  const IncreaseEnergy = () => {
-    setInterval(() => {
-      setCurrentEnergy((prevValue) => prevValue + 1)
-    }, 1000)
-  }
-  
-  useEffect(() => IncreaseEnergy(), [])
+  const handleTapAnimation = useCallback((clickX: number, buttonWidth: number) => {
+    const newTransformStyle = clickX < buttonWidth / 2
+      ? 'scale(0.95, 0.95) skew(-1deg, 0deg)'
+      : 'scale(0.95, 0.95) skew(1deg, 0deg)'
+    setTransformStyle(newTransformStyle)
+    setTimeout(() => setTransformStyle(''), 300)
+  }, [])
+
+  const handleTouchEnd = useCallback((e: React.TouchEvent<HTMLButtonElement>) => {
+    const { clientX, clientY } = e.changedTouches[0]
+    const button = e.currentTarget
+    const buttonRect = button.getBoundingClientRect()
+    const clickX = clientX - buttonRect.left
+    const buttonWidth = buttonRect.width
+
+    handleTap(clientX, clientY)
+    handleTapAnimation(clickX, buttonWidth)
+  }, [handleTap, handleTapAnimation])
 
   useEffect(() => {
-    if (currentTapValue > 0) {
-      const interval = setInterval(() => {
-        setCount((prevCount) => prevCount + 1)
-        setCurrentTapValue((prevValue) => prevValue - 1)
-        setCurrentEnergy((prevValue) => prevValue - 1)
-      }, 100)
+    const energyTimer = setInterval(() => {
+      dispatch({ type: 'INCREASE_ENERGY' })
+    }, ENERGY_INCREASE_INTERVAL)
 
-      return () => clearInterval(interval)
+    return () => clearInterval(energyTimer)
+  }, [])
+
+  useEffect(() => {
+    if (state.currentTapValue > 0) {
+      const pointTimer = setInterval(() => {
+        dispatch({ type: 'INCREMENT_POINTS' })
+        dispatch({ type: 'DECREASE_TAP_VALUE' })
+      }, POINT_INCREASE_INTERVAL)
+
+      return () => clearInterval(pointTimer)
     }
-  }, [currentTapValue])
+  }, [state.currentTapValue])
+
+  useEffect(() => {
+    state.pointDisplays.forEach(point => {
+      setTimeout(() => {
+        dispatch({ type: 'REMOVE_POINT_DISPLAY', payload: point.id })
+      }, 1500) // Match this with the animation duration
+    })
+  }, [state.pointDisplays])
 
   return (
     <main className='relative w-[90%] py-4 mx-auto h-screen grid auto-rows-auto gap-4'>
       <UserLevelInfo />
       <DataBoard />
       <div className='row-span-12 flex flex-col justify-between'>
-
         <div className='mx-auto'>
-          <Points points={count} />
+          <Points points={state.points} />
         </div>
         
         <div className='relative -translate-y-8 mx-auto'>
-          <TapBtn action={handleClick} />
+          <TapBtn action={handleTouchEnd} pressStyle={transformStyle} />
         </div>
         
         <div className='flex justify-between h-fit'>
-          <TapEnergy activeEnergy={currentEnergy} levelMaxEnergy={levelMaxEnergy}/>
+          <TapEnergy activeEnergy={state.currentEnergy} levelMaxEnergy={LEVEL_MAX_ENERGY}/>
           <CircleButton path="/settings">
-            <Image src={settingsIcon} alt="Settings icon" width="23" />
+            <Image src={settingsIcon} alt="Settings icon" width={23} />
           </CircleButton>
         </div>
       </div>
@@ -77,19 +94,19 @@ const homePage = () => {
       <div className='h-20'></div>
 
       <AnimatePresence>
-        {points.map((point) => (
+        {state.pointDisplays.map((point) => (
           <motion.div
             key={point.id}
             initial={{ opacity: 1, scale: 1 }}
             animate={{ y: -100, opacity: 0, scale: 2 }}
             transition={{ duration: 1.5, ease: 'easeOut' }}
-            className="absolute selection:bg-transparent"
+            className="absolute z-50 font-bold selection:bg-transparent"
             style={{
               left: point.x - 16,
               top: point.y - 16,
             }}
           >
-            +{pointsPerTap}
+            +{state.pointsPerTap}
           </motion.div>
         ))}
       </AnimatePresence>
@@ -97,4 +114,4 @@ const homePage = () => {
   )
 }
 
-export default homePage
+export default HomePage
